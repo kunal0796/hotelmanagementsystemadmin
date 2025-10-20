@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <%- include('partials/header') %>
+            
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-download me-1"></i> Export
+                            </button>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-primary">
+                            <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row mb-4">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Employees
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= counts.employees %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-people-fill fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a href="/admin/employee" class="btn btn-sm btn-primary w-100">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Manage
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Rooms
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= counts.rooms %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-door-closed-fill fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a href="/admin/room" class="btn btn-sm btn-success w-100">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Manage
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                            Drivers
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= counts.drivers %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-car-front-fill fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a href="/admin/driver" class="btn btn-sm btn-info w-100">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Manage
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Customers
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= counts.customers %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-person-badge-fill fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a href="/admin/customer" class="btn btn-sm btn-warning w-100">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Manage
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Departments Card -->
+                <div class="row mb-4">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                            Departments
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><%= counts.departments %></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-building fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a href="/admin/department" class="btn btn-sm btn-danger w-100">
+                                    <i class="bi bi-arrow-right-circle me-1"></i> Manage
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Tables -->
+                <div class="row">
+                    <!-- Top Employees -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Top 5 Employees</h6>
+                                <a href="/admin/employee" class="btn btn-sm btn-outline-primary">View All</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Position</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% topEmployees.forEach(emp => { %>
+                                                <tr>
+                                                    <td><%= emp.name %></td>
+                                                    <td><%= emp.position %></td>
+                                                    <td><%= emp.email %></td>
+                                                </tr>
+                                            <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Rooms -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-success">Top 5 Rooms</h6>
+                                <a href="/admin/room" class="btn btn-sm btn-outline-success">View All</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Room No</th>
+                                                <th>Type</th>
+                                                <th>Status</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% topRooms.forEach(room => { %>
+                                                <tr>
+                                                    <td><%= room.room_number %></td>
+                                                    <td><%= room.type %></td>
+                                                    <td>
+                                                        <span class="badge <%= room.status === 'Available' ? 'bg-success' : 'bg-danger' %>">
+                                                            <%= room.status %>
+                                                        </span>
+                                                    </td>
+                                                    <td>$<%= room.price %></td>
+                                                </tr>
+                                            <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Drivers -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-info">Top 5 Drivers</h6>
+                                <a href="/admin/driver" class="btn btn-sm btn-outline-info">View All</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>License</th>
+                                                <th>Phone</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% topDrivers.forEach(driver => { %>
+                                                <tr>
+                                                    <td><%= driver.name %></td>
+                                                    <td><%= driver.license_number %></td>
+                                                    <td><%= driver.phone %></td>
+                                                </tr>
+                                            <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Customers -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-warning">Top 5 Customers</h6>
+                                <a href="/admin/customer" class="btn btn-sm btn-outline-warning">View All</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% topCustomers.forEach(customer => { %>
+                                                <tr>
+                                                    <td><%= customer.name %></td>
+                                                    <td><%= customer.email %></td>
+                                                    <td><%= customer.phone %></td>
+                                                </tr>
+                                            <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Departments -->
+                    <div class="col-lg-12 mb-4">
+                        <div class="card shadow">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-danger">Top 5 Departments</h6>
+                                <a href="/admin/department" class="btn btn-sm btn-outline-danger">View All</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Department Name</th>
+                                                <th>Manager</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% topDepartments.forEach(dept => { %>
+                                                <tr>
+                                                    <td><%= dept.name %></td>
+                                                    <td><%= dept.manager %></td>
+                                                </tr>
+                                            <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/* ===== Global Reset ===== */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Poppins', sans-serif;
+  color: #212529;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  transition: all 0.3s ease;
+}
+.navbar-brand {
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+.nav-link {
+  transition: 0.2s;
+  font-weight: 500;
+}
+.nav-link:hover, .nav-link.active {
+  color: #ffc107 !important;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+/* ===== Dashboard Cards ===== */
+.card {
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+  border: none;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Buttons ===== */
+button, .btn {
+  border-radius: 10px !important;
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ===== Tables ===== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+}
+th {
+  background-color: #212529;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+td {
+  text-align: center;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr:hover {
+  background-color: #e9ecef;
+  transition: background-color 0.2s;
+}
+
+/* ===== Forms ===== */
+form input, form select, form textarea {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+}
+form input:focus, form select:focus, form textarea:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 5px rgba(13,110,253,0.5);
+}
+
+/* ===== Footer ===== */
+footer {
+  background-color: #212529;
+  color: #ddd;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  padding: 15px 0;
+}
+footer strong {
+  color: #ffc107;
+}
+footer p {
+  margin: 0;
+}
+
+/* ===== Accordion & Cards Spacing ===== */
+.accordion-button {
+  font-weight: 500;
+}
+.accordion-button:focus {
+  box-shadow: none;
+}
+.accordion-body form > div {
+  margin-bottom: 10px;
+}
+
+/* ===== Alerts ===== */
+.alert {
+  border-radius: 10px;
+}
+
+/* ===== Utility Enhancements ===== */
+.text-primary {
+  color: #0d6efd !important;
+}
+.text-danger {
+  color: #dc3545 !important;
+}
+.text-success {
+  color: #198754 !important;
+}

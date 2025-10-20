@@ -1,0 +1,39 @@
+<div class="sidebar-sticky">
+    <div class="p-3 bg-light border-bottom">
+        <h5 class="mb-0">
+            <i class="bi bi-speedometer2 me-2"></i>
+            Quick Stats
+        </h5>
+    </div>
+    <div class="list-group list-group-flush">
+        <a href="/admin/dashboard" class="list-group-item list-group-item-action active">
+            <i class="bi bi-house-door me-2"></i>
+            Dashboard
+        </a>
+        <a href="/admin/employee" class="list-group-item list-group-item-action">
+            <i class="bi bi-people me-2"></i>
+            Employees
+            <span class="badge bg-primary rounded-pill float-end"><%= counts.employees %></span>
+        </a>
+        <a href="/admin/room" class="list-group-item list-group-item-action">
+            <i class="bi bi-door-closed me-2"></i>
+            Rooms
+            <span class="badge bg-success rounded-pill float-end"><%= counts.rooms %></span>
+        </a>
+        <a href="/admin/driver" class="list-group-item list-group-item-action">
+            <i class="bi bi-car-front me-2"></i>
+            Drivers
+            <span class="badge bg-info rounded-pill float-end"><%= counts.drivers %></span>
+        </a>
+        <a href="/admin/customer" class="list-group-item list-group-item-action">
+            <i class="bi bi-person-badge me-2"></i>
+            Customers
+            <span class="badge bg-warning rounded-pill float-end"><%= counts.customers %></span>
+        </a>
+        <a href="/admin/department" class="list-group-item list-group-item-action">
+            <i class="bi bi-building me-2"></i>
+            Departments
+            <span class="badge bg-danger rounded-pill float-end"><%= counts.departments %></span>
+        </a>
+    </div>
+</div>
