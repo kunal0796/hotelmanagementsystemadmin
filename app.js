@@ -42,9 +42,15 @@ app.set('views', path.join(__dirname, 'views'));
 // Routes
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
+const employeeRoutes = require('./routes/employee');
+const roomRoutes = require('./routes/room');
+const driverRoutes = require('./routes/driver');
 
 app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
+app.use('/admin/employee', employeeRoutes);
+app.use('/admin/room', roomRoutes);
+app.use('/admin/driver', driverRoutes);
 
 // Home route - redirect to login
 app.get('/', (req, res) => {
@@ -93,8 +99,36 @@ app.use((req, res) => {
     res.status(404).render('404', { title: 'Page Not Found' });
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-    console.log(`📊 Admin Dashboard: http://localhost:${PORT}/admin/dashboard`);
-});
+// Start server with retry on EADDRINUSE
+let server;
+const maxRetries = 5;
+let attempts = 0;
+let currentPort = Number(process.env.PORT) || Number(PORT) || 3000;
+
+function startServer(port) {
+    server = app.listen(port, () => {
+        process.env.PORT = port;
+        console.log(`🚀 Server running on http://localhost:${port}`);
+        console.log(`📊 Admin Dashboard: http://localhost:${port}/admin/dashboard`);
+    });
+
+    server.on('error', (err) => {
+        if (err && err.code === 'EADDRINUSE') {
+            attempts += 1;
+            if (attempts > maxRetries) {
+                console.error(`Port ${port} is in use and max retries reached. Exiting.`);
+                process.exit(1);
+            }
+            const nextPort = port + 1;
+            console.warn(`Port ${port} is in use. Trying port ${nextPort} (attempt ${attempts}/${maxRetries})...`);
+            setTimeout(() => startServer(nextPort), 300);
+        } else {
+            console.error('Server error:', err);
+            process.exit(1);
+        }
+    });
+}
+
+startServer(currentPort);
+
+module.exports = app;

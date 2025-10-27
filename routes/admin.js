@@ -81,30 +81,17 @@ router.get('/dashboard', async (req, res) => {
     }
 });
 
-// Other routes...
-router.get('/employee', (req, res) => {
-    res.render('employee', { 
-        title: 'Employees - Hotel Management System',
-        user: req.session.user 
-    });
-});
+// Mount entity routes
+const employeeRoutes = require('./employee');
+const roomRoutes = require('./room');
+const driverRoutes = require('./driver');
 
-router.get('/room', (req, res) => {
-    res.render('room', { 
-        title: 'Rooms - Hotel Management System',
-        user: req.session.user 
-    });
-});
-
-router.get('/driver', (req, res) => {
-    res.render('driver', { 
-        title: 'Drivers - Hotel Management System',
-        user: req.session.user 
-    });
-});
+router.use('/employee', employeeRoutes);
+router.use('/room', roomRoutes);
+router.use('/driver', driverRoutes);
 
 router.get('/customer', (req, res) => {
-    res.render('customer', { 
+    res.render('customers', { 
         title: 'Customers - Hotel Management System',
         user: req.session.user 
     });
