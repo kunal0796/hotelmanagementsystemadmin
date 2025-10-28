@@ -1,0 +1,102 @@
+<%- include('partials/navbar') %>
+
+<div class="container mt-5 pt-5">
+  <h1 class="mb-4 text-center">
+    <%= action === 'add' ? 'Add New Room' : 'Edit Room' %>
+  </h1>
+
+  <form 
+    method="POST" 
+    action="<%= action === 'add' ? '/admin/room' : '/admin/room/edit/' + room.id %>"
+    class="p-4 bg-light shadow rounded"
+  >
+    <div class="row g-3">
+      <!-- Room Number -->
+      <div class="col-md-6">
+        <label for="room_number" class="form-label fw-bold">Room Number</label>
+        <input 
+          type="text" 
+          id="room_number" 
+          name="room_number" 
+          class="form-control" 
+          placeholder="Enter room number" 
+          value="<%= room ? room.room_number : '' %>" 
+          required 
+        />
+      </div>
+
+      <!-- Type -->
+      <div class="col-md-6">
+        <label for="type" class="form-label fw-bold">Room Type</label>
+        <select id="type" name="type" class="form-select" required>
+          <option value="">Select type</option>
+          <option value="Single" <%= room && room.type === 'Single' ? 'selected' : '' %>>Single</option>
+          <option value="Double" <%= room && room.type === 'Double' ? 'selected' : '' %>>Double</option>
+          <option value="Suite" <%= room && room.type === 'Suite' ? 'selected' : '' %>>Suite</option>
+        </select>
+      </div>
+
+      <!-- Status -->
+      <div class="col-md-6">
+        <label for="status" class="form-label fw-bold">Status</label>
+        <select id="status" name="status" class="form-select" required>
+          <option value="Available" <%= room && room.status === 'Available' ? 'selected' : '' %>>Available</option>
+          <option value="Occupied" <%= room && room.status === 'Occupied' ? 'selected' : '' %>>Occupied</option>
+          <option value="Maintenance" <%= room && room.status === 'Maintenance' ? 'selected' : '' %>>Maintenance</option>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div class="col-md-6">
+        <label for="price" class="form-label fw-bold">Price (₹)</label>
+        <input 
+          type="number" 
+          step="0.01" 
+          id="price" 
+          name="price" 
+          class="form-control" 
+          placeholder="Enter price" 
+          value="<%= room ? room.price : '' %>" 
+          required 
+        />
+      </div>
+
+      <!-- Floor -->
+      <div class="col-md-6">
+        <label for="floor" class="form-label fw-bold">Floor</label>
+        <input 
+          type="number" 
+          id="floor" 
+          name="floor" 
+          class="form-control" 
+          placeholder="Enter floor number" 
+          value="<%= room ? room.floor : '' %>" 
+        />
+      </div>
+
+      <!-- Capacity -->
+      <div class="col-md-6">
+        <label for="capacity" class="form-label fw-bold">Capacity</label>
+        <input 
+          type="number" 
+          id="capacity" 
+          name="capacity" 
+          class="form-control" 
+          placeholder="Enter capacity" 
+          value="<%= room ? room.capacity : '' %>" 
+          required 
+        />
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+      <a href="/admin/room" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+      </a>
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-save"></i> 
+        <%= action === 'add' ? 'Add Room' : 'Update Room' %>
+      </button>
+    </div>
+  </form>
+</div>

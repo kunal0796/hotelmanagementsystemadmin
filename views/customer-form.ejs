@@ -1,0 +1,58 @@
+<%- include('partials/navbar') %>
+
+<div class="container mt-5 pt-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="mb-4 text-center">
+      <%= action === 'add' ? 'Add New Customer' : 'Edit Customer' %>
+    </h2>
+
+    <form 
+      method="POST" 
+      action="<%= action === 'add' ? '/admin/customer' : '/admin/customer/edit/' + customer.id %>"
+    >
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" id="name" name="name" class="form-control" required value="<%= customer ? customer.name : '' %>">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-control" value="<%= customer ? customer.email : '' %>">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" id="phone" name="phone" class="form-control" value="<%= customer ? customer.phone : '' %>">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="room_number" class="form-label">Room Number</label>
+          <input type="text" id="room_number" name="room_number" class="form-control" value="<%= customer ? customer.room_number : '' %>">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="check_in_date" class="form-label">Check-In Date</label>
+          <input type="date" id="check_in_date" name="check_in_date" class="form-control" value="<%= customer ? customer.check_in_date.toISOString().split('T')[0] : '' %>">
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="check_out_date" class="form-label">Check-Out Date</label>
+          <input type="date" id="check_out_date" name="check_out_date" class="form-control" value="<%= customer ? customer.check_out_date.toISOString().split('T')[0] : '' %>">
+        </div>
+
+        <div class="col-12 mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea id="address" name="address" class="form-control" rows="3"><%= customer ? customer.address : '' %></textarea>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-success">
+          <%= action === 'add' ? 'Add Customer' : 'Update Customer' %>
+        </button>
+        <a href="/admin/customer" class="btn btn-secondary ms-2">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

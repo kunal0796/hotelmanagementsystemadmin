@@ -1,0 +1,92 @@
+<%- include('partials/navbar') %>
+
+<div class="container mt-5 pt-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="mb-4 text-center">
+      <%= action === 'add' ? 'Add New Employee' : 'Edit Employee' %>
+    </h2>
+
+    <form 
+      method="POST" 
+      action="<%= action === 'add' ? '/admin/employee' : '/admin/employee/edit/' + employee.id %>"
+    >
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="name" 
+          name="name" 
+          required 
+          value="<%= employee ? employee.name : '' %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="position" class="form-label">Position</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="position" 
+          name="position" 
+          required 
+          value="<%= employee ? employee.position : '' %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="email" 
+          name="email" 
+          required 
+          value="<%= employee ? employee.email : '' %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="phone" 
+          name="phone" 
+          value="<%= employee ? employee.phone : '' %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="salary" class="form-label">Salary ($)</label>
+        <input 
+          type="number" 
+          class="form-control" 
+          id="salary" 
+          name="salary" 
+          required 
+          value="<%= employee ? employee.salary : '' %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="hire_date" class="form-label">Hire Date</label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="hire_date" 
+          name="hire_date" 
+          required 
+          value="<%= employee ? new Date(employee.hire_date).toISOString().split('T')[0] : '' %>"
+        />
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-success">
+          <%= action === 'add' ? 'Add Employee' : 'Update Employee' %>
+        </button>
+        <a href="/admin/employee" class="btn btn-secondary ms-2">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

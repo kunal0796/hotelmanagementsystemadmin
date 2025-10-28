@@ -1,0 +1,79 @@
+<%- include('partials/navbar') %>
+
+<div class="container mt-5 pt-5">
+  <div class="card shadow-lg p-4">
+    <h2 class="mb-4 text-center">
+      <%= action === 'add' ? 'Add New Driver' : 'Edit Driver' %>
+    </h2>
+
+    <form 
+      method="POST" 
+      action="<%= action === 'add' ? '/admin/driver' : '/admin/driver/edit/' + driver.id %>"
+    >
+      <div class="mb-3">
+        <label for="name" class="form-label">Driver Name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="name" 
+          name="name" 
+          required 
+          value="<%= driver ? driver.name : '' %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="license_number" class="form-label">License Number</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="license_number" 
+          name="license_number" 
+          required 
+          value="<%= driver ? driver.license_number : '' %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="phone" 
+          name="phone" 
+          value="<%= driver ? driver.phone : '' %>"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="vehicle_type" class="form-label">Vehicle Type</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="vehicle_type" 
+          name="vehicle_type" 
+          placeholder="e.g. Sedan, Van, Bus" 
+          value="<%= driver ? driver.vehicle_type : '' %>"
+        />
+      </div>
+
+      <div class="form-check mb-4">
+        <input 
+          type="checkbox" 
+          class="form-check-input" 
+          id="available" 
+          name="available" 
+          <%= driver && driver.available ? 'checked' : '' %>
+        />
+        <label for="available" class="form-check-label">Available</label>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-success">
+          <%= action === 'add' ? 'Add Driver' : 'Update Driver' %>
+        </button>
+        <a href="/admin/driver" class="btn btn-secondary ms-2">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

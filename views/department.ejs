@@ -1,0 +1,44 @@
+<%- include('partials/navbar') %>
+
+<div class="container mt-5 pt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><%= title %></h1>
+    <a href="/admin/department/add" class="btn btn-primary">Add New Department</a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Manager</th>
+          <th>Description</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (departments && departments.length) { %>
+          <% departments.forEach(dep => { %>
+            <tr>
+              <td><%= dep.id %></td>
+              <td><%= dep.name %></td>
+              <td><%= dep.manager %></td>
+              <td><%= dep.description || '-' %></td>
+              <td><%= new Date(dep.created_at).toLocaleDateString() %></td>
+              <td>
+                <a href="/admin/department/edit/<%= dep.id %>" class="btn btn-sm btn-warning me-2">Edit</a>
+                <form method="POST" action="/admin/department/delete/<%= dep.id %>" class="d-inline" onsubmit="return confirm('Delete this department?')">
+                  <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr><td colspan="6" class="text-center">No departments found</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>

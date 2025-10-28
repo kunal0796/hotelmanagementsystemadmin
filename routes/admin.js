@@ -35,8 +35,6 @@ router.get('/dashboard', async (req, res) => {
         const [customerCount] = await pool.execute('SELECT COUNT(*) as count FROM customers');
         const [departmentCount] = await pool.execute('SELECT COUNT(*) as count FROM departments');
         
-        console.log('Database queries successful');
-        
         // Get top 5 records for each table
         const [topEmployees] = await pool.execute(
             'SELECT id, name, position, email FROM employees ORDER BY id DESC LIMIT 5'
@@ -48,13 +46,12 @@ router.get('/dashboard', async (req, res) => {
             'SELECT id, name, license_number, phone FROM drivers ORDER BY id DESC LIMIT 5'
         );
         const [topCustomers] = await pool.execute(
-            'SELECT id, name, email, phone FROM customers ORDER BY id DESC LIMIT 5'
+            'SELECT id, name, email, phone, address FROM customers ORDER BY id DESC LIMIT 5'
         );
+
         const [topDepartments] = await pool.execute(
             'SELECT id, name, manager FROM departments ORDER BY id DESC LIMIT 5'
         );
-        
-        console.log('Rendering dashboard...');
         
         res.render('admin-dashboard', {
             title: 'Dashboard - Hotel Management System',
@@ -73,8 +70,6 @@ router.get('/dashboard', async (req, res) => {
             topDepartments
         });
         
-        console.log('Dashboard rendered successfully');
-        
     } catch (error) {
         console.error('Dashboard error:', error);
         res.status(500).send('Dashboard error: ' + error.message);
@@ -85,23 +80,13 @@ router.get('/dashboard', async (req, res) => {
 const employeeRoutes = require('./employee');
 const roomRoutes = require('./room');
 const driverRoutes = require('./driver');
+const departmentRoutes = require('./department');
+const customerRoutes = require('./customer'); // ✅ newly added route file
 
 router.use('/employee', employeeRoutes);
 router.use('/room', roomRoutes);
 router.use('/driver', driverRoutes);
-
-router.get('/customer', (req, res) => {
-    res.render('customers', { 
-        title: 'Customers - Hotel Management System',
-        user: req.session.user 
-    });
-});
-
-router.get('/department', (req, res) => {
-    res.render('department', { 
-        title: 'Departments - Hotel Management System',
-        user: req.session.user 
-    });
-});
+router.use('/department', departmentRoutes);
+router.use('/customer', customerRoutes); // ✅ now properly mounted
 
 module.exports = router;

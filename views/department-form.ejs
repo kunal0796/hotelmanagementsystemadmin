@@ -1,0 +1,65 @@
+<%- include('partials/navbar') %>
+
+<div class="container mt-5 pt-5">
+  <h1 class="mb-4 text-center">
+    <%= action === 'add' ? 'Add New Department' : 'Edit Department' %>
+  </h1>
+
+  <form 
+    method="POST" 
+    action="<%= action === 'add' ? '/admin/department' : '/admin/department/edit/' + department.id %>"
+    class="p-4 bg-light shadow rounded"
+  >
+    <div class="row g-3">
+      <!-- Department Name -->
+      <div class="col-md-6">
+        <label for="name" class="form-label fw-bold">Department Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          class="form-control" 
+          placeholder="Enter department name" 
+          value="<%= department ? department.name : '' %>" 
+          required 
+        />
+      </div>
+
+      <!-- Manager -->
+      <div class="col-md-6">
+        <label for="manager" class="form-label fw-bold">Manager</label>
+        <input 
+          type="text" 
+          id="manager" 
+          name="manager" 
+          class="form-control" 
+          placeholder="Enter manager name" 
+          value="<%= department ? department.manager : '' %>" 
+          required 
+        />
+      </div>
+
+      <!-- Description -->
+      <div class="col-12">
+        <label for="description" class="form-label fw-bold">Description</label>
+        <textarea 
+          id="description" 
+          name="description" 
+          class="form-control" 
+          rows="4" 
+          placeholder="Enter department description"
+        ><%= department ? department.description : '' %></textarea>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+      <a href="/admin/department" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+      </a>
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-save"></i> 
+        <%= action === 'add' ? 'Add Department' : 'Update Department' %>
+      </button>
+    </div>
+  </form>
+</div>
